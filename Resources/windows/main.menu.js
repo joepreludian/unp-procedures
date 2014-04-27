@@ -15,7 +15,8 @@ module.exports = function() {
 	procedureList.setData(data);
 	
 	procedureList.addEventListener('click', function(e) {
-		alert('title: \'' + e.row.title + '\', section: \'' + e.section.headerTitle + '\', index: ' + e.index);
+		//alert('title: \'' + e.row.title + '\', section: \'' + e.section.headerTitle + '\', index: ' + e.index);
+		self.fireEvent('open_detail', { data: true });
 	});
 	
 	self.add(procedureList);

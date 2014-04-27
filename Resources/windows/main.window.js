@@ -1,5 +1,10 @@
 module.exports = function() {
 	
+	//Main menu
+	var mainMenu = require('windows/main.menu')();
+	var masterNav = Ti.UI.iOS.createNavigationWindow({window: mainMenu});
+	
+	//Detail Window
 	var detail = Ti.UI.createWindow({
 		backgroundColor: '#ffffff',
 		backgroundImage: 'images/systembg.png',
@@ -13,10 +18,6 @@ module.exports = function() {
 	var detailNav = Ti.UI.iOS.createNavigationWindow({window: detail});
 	
 	
-	
-	var mainMenu = require('windows/main.menu')();
-	var masterNav = Ti.UI.iOS.createNavigationWindow({window: mainMenu});
-	
 	var splitWin = Ti.UI.iPad.createSplitWindow({
 	    detailView: detailNav,
 	    masterView: masterNav
@@ -29,6 +30,13 @@ module.exports = function() {
 	    } else if (e.view == 'master'){
 	        detail.leftNavButton = null;
 	    }
+	});
+	
+	
+	//Adding event listeners
+	mainMenu.addEventListener('open_detail', function(evt){
+		var newWindow = require('windows/detail.window')();
+		detailNav.openWindow(newWindow, {animated: true});
 	});
 	
 	return splitWin;

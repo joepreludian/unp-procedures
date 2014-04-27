@@ -10,5 +10,4 @@ para codificar os videos foi utilizado uma ferramenta em linha de comando "ffmpe
 
 Para converter um arquivo para as especificações execute:
 
-    ffmpeg -i video1.mp4 -s 720x480 -r 30000/1001 -b 200k -bt 400k -vcodec libx264 -vpre ipod640 -an video1_optimized.mp4
-
+    ffmpeg -i video2.mp4 -s 720x480 -r 30000/1001 -b:v 800k -vcodec libx264 -vpre ipod640 -an video2_optimized.mp4

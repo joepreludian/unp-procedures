@@ -1,17 +1,19 @@
-module.exports = function(listArray) {
+module.exports = function() {
 	var self = Ti.UI.createWindow({
 		backgroundColor: '#ffffff', 
-		title: 'Lista dos procedimentos',
+		title: 'Videos',
 		backButtonTitle: "Voltar"
 	});
 	
 	// Create a TableView.
 	var procedureList = Ti.UI.createTableView();
 
-	procedureList.setData(listArray);
-	
 	procedureList.addEventListener('click', function(e) {
-		self.fireEvent('open_master', { data: e.row.data });
+		self.fireEvent('open_detail', { data: e.row.data });
+	});
+	
+	self.addEventListener('populate_data', function(evt){
+		procedureList.setData(evt.data);	
 	});
 	
 	self.add(procedureList);

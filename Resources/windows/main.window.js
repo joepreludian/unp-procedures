@@ -1,8 +1,22 @@
 module.exports = function() {
 	
 	//Main menu
-	var mainMenu = require('windows/main.menu')();
+	var db = require('components/database');
+	var procedures = db.getProcedures();
+	
+	procedureListArray = [];
+	procedures.forEach(function(item){
+		var listItem = { title: item.nome, data: item};
+		procedureListArray.push(listItem);
+	});	
+	
+	var mainMenu = require('windows/main.menu')(procedureListArray);
+	var videoMenu = require('windows/video.menu')();
+	
 	var masterNav = Ti.UI.iOS.createNavigationWindow({window: mainMenu});
+	
+	
+	
 	
 	//Detail Window
 	var detail = Ti.UI.createWindow({
@@ -34,9 +48,34 @@ module.exports = function() {
 	
 	
 	//Adding event listeners
-	mainMenu.addEventListener('open_detail', function(evt){
-		var newWindow = require('windows/detail.window')();
-		detailNav.openWindow(newWindow, {animated: true});
+	var currentView = undefined;
+	videoMenu.addEventListener('open_detail', function(evt){
+		
+		if (currentView != undefined)
+			detailNav.closeWindow(currentView);
+		
+		Ti.API.log('info', evt.data);
+		
+		currentView = require('windows/detail.window')(evt.data);
+		
+		detailNav.openWindow(currentView, {animated: true});
+	});
+	
+	
+	mainMenu.addEventListener('open_master', function(evt){
+		
+		var db = require('components/database');
+		var videos = db.getVideosByProcedure(evt.data.id);
+		
+		var videoList = [];
+		videos.forEach(function(item) {
+			var myItem = { title: item.nome, data: item };
+			videoList.push(myItem);
+		});
+		
+		videoMenu.fireEvent('populate_data', {data: videoList});
+		masterNav.openWindow(videoMenu, {animated: true});
+		
 	});
 	
 	return splitWin;

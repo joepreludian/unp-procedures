@@ -16,8 +16,6 @@ module.exports = function() {
 	var masterNav = Ti.UI.iOS.createNavigationWindow({window: mainMenu});
 	
 	
-	
-	
 	//Detail Window
 	var detail = Ti.UI.createWindow({
 		backgroundColor: '#ffffff',
@@ -48,17 +46,20 @@ module.exports = function() {
 	
 	
 	//Adding event listeners
-	var currentView = undefined;
-	videoMenu.addEventListener('open_detail', function(evt){
+	var videoView = require('windows/detail.window')();
+	var detailNavTimeout = undefined;
+	
+	Ti.App.addEventListener('run_video', function(evt){
+
+		detailNav.closeWindow(videoView);
 		
-		if (currentView != undefined)
-			detailNav.closeWindow(currentView);
+		if (detailNavTimeout != undefined)
+			clearTimeout(detailNavTimeout);
 		
-		Ti.API.log('info', evt.data);
+		detailNavTimeout = setTimeout(function(){
+			detailNav.openWindow(videoView, {animated: true});	
+		},2000);
 		
-		currentView = require('windows/detail.window')(evt.data);
-		
-		detailNav.openWindow(currentView, {animated: true});
 	});
 	
 	
@@ -69,7 +70,11 @@ module.exports = function() {
 		
 		var videoList = [];
 		videos.forEach(function(item) {
-			var myItem = { title: item.nome, data: item };
+			
+			//Adding procedure info to data
+			item.procedure = evt.data;
+			
+			var myItem = { title: item.nota + '. ' + item.nome, data: item };
 			videoList.push(myItem);
 		});
 		

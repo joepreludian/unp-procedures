@@ -1,4 +1,5 @@
 function loadDB(){
+	
 	return Ti.Database.install('database.db', 'ProceduresDatabase');
 }
 
@@ -6,13 +7,15 @@ module.exports = {
 	getProcedures: function() {
 		var db = loadDB();
 		var proceduresListArray = [];
-		var proceduresListIterator = db.execute('SELECT id, nome FROM procedure');
+		var proceduresListIterator = db.execute('SELECT id, nome, descricao, requisitos FROM procedure');
 		
 		while (proceduresListIterator.isValidRow())
 		{
 		  var procedureObj = {
 			id: proceduresListIterator.fieldByName('id'),
-			nome: proceduresListIterator.fieldByName('nome')
+			nome: proceduresListIterator.fieldByName('nome'),
+			descricao: proceduresListIterator.fieldByName('descricao'),
+			requisitos: proceduresListIterator.fieldByName('requisitos')
 		  };
 		  proceduresListArray.push(procedureObj);
 		  
@@ -27,7 +30,7 @@ module.exports = {
 	getVideosByProcedure: function(procedureId) {
 		var db = loadDB();
 		var videosListArray = [];
-		var videosListIterator = db.execute('SELECT id, nome, video, descricao, nota FROM video WHERE procedure_id = ' + procedureId);
+		var videosListIterator = db.execute('SELECT id, nome, video, descricao, nota FROM video WHERE procedure_id = ' + procedureId + ' ORDER BY nota DESC');
 		
 		while (videosListIterator.isValidRow())
 		{

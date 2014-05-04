@@ -9,7 +9,7 @@ module.exports = function() {
 	var procedureList = Ti.UI.createTableView();
 
 	procedureList.addEventListener('click', function(e) {
-		self.fireEvent('open_detail', { data: e.row.data });
+		Ti.App.fireEvent('set_video', { data: e.row.data });
 	});
 	
 	self.addEventListener('populate_data', function(evt){

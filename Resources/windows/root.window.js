@@ -14,9 +14,8 @@ module.exports = function()
 	
 	// Create a Button.
 	var startButton = Ti.UI.createButton({
-		title : 'Procedimentos Médicos',
-		height : '300px',
-		top : '75%',
+		title : 'Iniciar',
+		top : '70%',
 	});
 	
 	// Listen for click events.

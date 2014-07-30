@@ -50,6 +50,31 @@ module.exports = {
 		db.close();
 		
 		return videosListArray;
+	},
+	getProcedureByVideoAndTime: function(videoId, videoCurrentTime, previousData) {
+		
+		if (videoCurrentTime == 0)
+			return null;
+		
+		var db = loadDB();
+		var videosListArray = [];
+		var checklistIterator = db.execute('SELECT name FROM checklist WHERE video_id = '+ videoId +' AND time <= ' + videoCurrentTime + ' ORDER BY id DESC LIMIT 0,1');
+		
+		var checklistObj = null;
+		
+		if (checklistIterator.isValidRow())
+		{
+		  var name_data = checklistIterator.fieldByName('name');
+		  			
+		  checklistObj = {
+			nome: name_data,
+		  };
+		}
+		
+		checklistIterator.close();
+		db.close();
+		
+		return checklistObj;
 	}
 	
 	

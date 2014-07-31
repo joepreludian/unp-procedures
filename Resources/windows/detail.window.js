@@ -83,6 +83,8 @@ module.exports = function() {
 		self.title = evt.data.nome;
 		
 		clearInterval(playerCounter);
+		checklistLogData = '';
+		checklistCount = 1;
 	});
 	
 	var dbHandler = require('components/database');
@@ -98,7 +100,7 @@ module.exports = function() {
 			playerCounter = setInterval(function() {
 
 				var playbackTime = Math.round(videoPlayer.currentPlaybackTime/1000);
-				currentChecklistObj = dbHandler.getProcedureByVideoAndTime(1, playbackTime, currentChecklistObj);
+				currentChecklistObj = dbHandler.getProcedureByVideoAndTime(videoID, playbackTime, currentChecklistObj);
 				
 				if (currentChecklistObj != null) {
 					if (checklistLogData.indexOf(currentChecklistObj.nome) == -1) {

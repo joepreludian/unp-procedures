@@ -1,28 +1,44 @@
+PRAGMA foreign_keys=OFF;
+BEGIN TRANSACTION;
+CREATE TABLE [procedure] ([id] INTEGER PRIMARY KEY AUTOINCREMENT, [nome] VARCHAR (70) NOT NULL UNIQUE, [descricao] TEXT, [requisitos] TEXT);
+INSERT INTO "procedure" VALUES(1,'Procedimento teste #1','Descrição do procedimento teste #1
 
--- Table: procedure
-CREATE TABLE procedure ( 
-    id         INTEGER        PRIMARY KEY AUTOINCREMENT,
-    nome       VARCHAR( 70 )  NOT NULL
-                              UNIQUE,
-    descricao  TEXT,
-    requisitos TEXT 
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus pharetra, urna ac faucibus feugiat, lectus sapien posuere elit, id ultrices diam lectus eget eros. Vestibulum non enim tempus, aliquam urna sit amet, fermentum quam. Nam luctus elementum euismod. Aliquam erat volutpat. Integer a justo ut nunc laoreet pretium. Etiam tempus, purus lobortis aliquet ullamcorper, lectus augue tempus sapien, vitae lacinia tellus sapien eget mauris. In orci ligula, interdum a viverra nec, iaculis nec velit. Duis egestas velit vel neque rhoncus congue.
+
+Mauris quis dapibus sapien. Maecenas laoreet justo a lectus imperdiet imperdiet. Nunc lacinia congue bibendum. Nam fringilla nec mauris eget feugiat. Aenean laoreet sit amet nisl et porttitor. Suspendisse tincidunt nulla eu consequat euismod. Morbi rhoncus nunc nunc, sit amet sollicitudin nisi elementum hendrerit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+
+Donec tincidunt pellentesque commodo. Donec non justo est. Phasellus rutrum massa eu pulvinar volutpat. Sed sed nulla adipiscing mi auctor ultricies. Nulla cursus malesuada tellus vel dapibus. Aliquam nec neque egestas, ultricies tellus ac, egestas mauris. Praesent quis magna hendrerit, convallis dolor nec, ultrices enim. Nulla tincidunt lacus sem, non ultricies ipsum cursus non. Maecenas ligula nulla, accumsan euismod erat eu, aliquam tincidunt arcu. Nulla lobortis malesuada ipsum, et fermentum elit interdum id.
+
+Nulla semper ligula vitae est sodales posuere. Proin accumsan, nulla at hendrerit auctor, mi lectus feugiat lorem, nec cursus lectus odio eleifend nunc. Pellentesque dignissim nunc est, sit amet lacinia metus vestibulum id. Aenean et sapien pulvinar, ultricies nibh nec, rutrum magna. Nam quis sem ligula. Suspendisse potenti. Proin quis luctus felis. Suspendisse aliquet nisi ligula, ut volutpat nulla blandit a. Curabitur vulputate purus eu mi euismod, a fermentum arcu porttitor. Integer bibendum justo ipsum, nec viverra libero lobortis vitae. Suspendisse felis sapien, vulputate ac nulla eu, blandit adipiscing velit. Phasellus ac rhoncus magna. Cras vitae augue id quam tincidunt adipiscing. Etiam fringilla ornare massa accumsan rutrum. Pellentesque elit orci, consectetur non varius at, porta nec sem.
+
+Pellentesque vel tincidunt lectus, sit amet varius purus. Nunc sit amet nisl at mi tincidunt congue. Donec cursus dui at leo rutrum, in molestie nulla imperdiet. In id commodo neque. Nullam vel molestie enim, dignissim laoreet risus. Donec volutpat velit ligula, id aliquet mauris dictum et. Nunc hendrerit ante a orci commodo, a luctus lorem euismod. Nullam pharetra augue sit amet nisi lacinia fermentum. Sed eu nibh interdum, dignissim tellus in, consequat erat. ','Requisitos do procedimento teste #1');
+INSERT INTO "procedure" VALUES(2,'Procedimento teste #2','Description of test procedure #2','Sem requisitos');
+CREATE TABLE [video] ([id] INTEGER PRIMARY KEY AUTOINCREMENT, [video] VARCHAR (100) NOT NULL, [procedure_id] INTEGER REFERENCES [procedure] ([id]) ON UPDATE CASCADE ON DELETE SET NULL, [descricao] TEXT NOT NULL, [nota] INTEGER DEFAULT(7), [nome] VARCHAR (60));
+INSERT INTO "video" VALUES(1,'video1.mp4',1,'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut mattis id turpis ut sodales. Nullam velit nulla, blandit eu tempor vel, vulputate vel ipsum. Fusce vel purus ipsum. Aenean congue est et risus dapibus, ut commodo sem ornare. Duis porta varius pulvinar. In accumsan turpis in leo pretium, in placerat neque sodales. Ut eu tortor ut velit lobortis porttitor. Donec blandit purus in est porta faucibus. Sed ut est pellentesque, suscipit sapien id, venenatis quam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec placerat orci dolor, sed dignissim quam eleifend a.
+Sed dignissim ipsum metus, a volutpat justo hendrerit non. Maecenas sollicitudin neque at pretium vulputate. Duis sit amet porta massa. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Ut ac vestibulum tortor. Phasellus ac lorem mi. Quisque ornare semper congue.
+Sed posuere mi facilisis, faucibus velit quis, eleifend neque. Vivamus et risus sed libero eleifend vehicula vel non ligula. Duis non est blandit, interdum velit placerat, facilisis ligula. Duis sodales arcu nisi, eu tempor nisi vulputate nec. Nam diam turpis, varius nec volutpat ac, lacinia at nunc. Curabitur pulvinar lobortis dolor, nec congue magna tristique vel. Morbi eleifend ultricies nunc vitae interdum. Pellentesque at quam turpis. Vivamus vel euismod augue. Nulla pellentesque suscipit augue, eu cursus elit mattis eu. Nulla lacus nisi, viverra sit amet egestas sed, interdum sit amet dolor. In tincidunt tincidunt quam at imperdiet. Pellentesque sit amet est eget libero tincidunt vehicula. Donec laoreet nisl vitae libero sodales, nec scelerisque nisi sodales. Donec at dolor pretium risus tempor luctus. Sed ultrices dui eget velit pharetra posuere.
+Nam ultricies risus et diam venenatis, eget molestie tortor venenatis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed justo sem, dictum eget mauris non, interdum congue leo. Pellentesque tincidunt, nunc at fringilla pulvinar, quam enim blandit justo, et convallis felis est suscipit mauris. Cras iaculis, arcu sodales ornare vestibulum, orci magna hendrerit massa, id eleifend lacus felis ac urna. Vivamus id urna sollicitudin, fringilla arcu in, convallis est. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer eget sodales nunc, at consequat dolor. Aenean eu molestie nulla. Praesent quis sagittis nibh. Donec a purus commodo quam rutrum aliquet. Suspendisse potenti.
+',7,'Primeiro procedimento');
+INSERT INTO "video" VALUES(2,'video2.mp4',1,'Nulla mollis condimentum lectus, eu viverra erat pellentesque a. Cras hendrerit rutrum gravida. Vivamus euismod ipsum ac sapien dapibus, eget egestas augue pulvinar. Proin ornare gravida sem, eu imperdiet lorem tristique nec. Aenean eget ligula elementum, vulputate sem ut, consectetur arcu. Quisque ut sapien sed ipsum vehicula suscipit quis in odio. Phasellus at diam nibh. Nam non nisi tempor, sollicitudin leo quis, rhoncus tortor. Nullam at tortor ac sapien viverra vulputate ornare sit amet nunc. Integer pharetra vel diam in lobortis. Sed nulla magna, consectetur quis lacus a, pretium tincidunt dui. Nunc quis neque tincidunt, ullamcorper neque euismod, bibendum nibh. Curabitur pretium condimentum imperdiet. Vivamus eros nulla, vehicula id neque non, aliquet tempus enim. Ut et accumsan mi, sit amet lobortis enim.',5,'Segundo procedimento');
+INSERT INTO "video" VALUES(3,'video3.mp4',2,'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at malesuada augue. Cras porta consectetur diam, eget ultrices nulla ornare et. Fusce quis lectus nulla. Integer eget enim at est porttitor aliquet. Nunc sit amet enim non eros molestie malesuada vitae eget tellus. Aenean tortor dui, vehicula condimentum pellentesque sit amet, facilisis quis sapien. Aliquam nec lorem nec justo adipiscing luctus in quis purus. Curabitur pellentesque eros mauris. Curabitur tristique sem sit amet elit venenatis aliquet. Donec ornare tincidunt nunc ac semper. Integer eget tortor ante. Ut a odio eu tortor egestas venenatis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla scelerisque id neque non vulputate.
+Nam mattis lectus ut eros rhoncus ornare. Duis in velit hendrerit, fermentum felis sit amet, facilisis velit. Sed porta dui consectetur neque pharetra, quis facilisis mauris condimentum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce mollis urna quis orci ullamcorper, ut molestie lacus venenatis. Duis tincidunt metus sed sem scelerisque, non vehicula nulla sodales. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum eu leo ac tellus rutrum vulputate id et dui. Nulla diam mauris, eleifend et est vitae, hendrerit imperdiet arcu. Vivamus placerat condimentum ante, vel placerat est tristique vitae. Aenean sed aliquam tellus. Etiam imperdiet, tellus a rhoncus aliquet, est nisi fermentum libero, vitae dictum est risus at est. Donec sit amet lacus semper, elementum velit et, dapibus ligula. Donec posuere et lectus ut facilisis. Nulla porttitor ultrices ante, et tincidunt leo adipiscing sed.',8,'Terceiro Procedimento');
+INSERT INTO "video" VALUES(4,'video4.mp4',2,'Nam non magna nibh. Sed ut mi est. Proin dignissim scelerisque quam. Pellentesque tellus felis, cursus non convallis ac, tristique vel augue. Pellentesque a dictum diam. Integer sit amet odio eget nibh scelerisque tempus. Maecenas euismod pellentesque commodo.',3,'Quarto procedimento');
+CREATE TABLE "checklist" (
+	 "id" integer NOT NULL,
+	 "name" text NOT NULL,
+	 "time" integer NOT NULL,
+	 "video_id" integer NOT NULL,
+	PRIMARY KEY("id","video_id"),
+	CONSTRAINT "video_foreign" FOREIGN KEY ("video_id") REFERENCES "video" ("id") ON DELETE CASCADE ON UPDATE CASCADE
 );
-
-INSERT INTO [procedure] ([id], [nome], [descricao], [requisitos]) VALUES (1, 'Procedimento teste #1', 'Uma descrição teste', 'Requisitos do procedimento teste #1');
-INSERT INTO [procedure] ([id], [nome], [descricao], [requisitos]) VALUES (2, 'Procedimento teste #2', 'Breve descrição', 'Sem requisitos');
-
--- Table: video
-CREATE TABLE video ( 
-    id           INTEGER         PRIMARY KEY AUTOINCREMENT,
-    video        VARCHAR( 100 )  NOT NULL,
-    procedure_id INTEGER         REFERENCES procedure ( id ) ON DELETE SET NULL
-                                                             ON UPDATE CASCADE,
-    descricao    TEXT            NOT NULL,
-    nota         INTEGER         DEFAULT ( 7 ),
-    nome         VARCHAR( 60 ) 
-);
-
-INSERT INTO [video] ([id], [video], [procedure_id], [descricao], [nota], [nome]) VALUES (1, 'video1.mp4', 1, 'Primeira forma de proceder', 7, 'Primeiro procedimento');
-INSERT INTO [video] ([id], [video], [procedure_id], [descricao], [nota], [nome]) VALUES (2, 'video2.mp4', 1, 'Segunda forma de proceder', 5, 'Segundo procedimento');
-INSERT INTO [video] ([id], [video], [procedure_id], [descricao], [nota], [nome]) VALUES (3, 'video3.mp4', 2, 'Forma teste 1', 8, 'Terceiro Procedimento');
-INSERT INTO [video] ([id], [video], [procedure_id], [descricao], [nota], [nome]) VALUES (4, 'video4.mp4', 2, 'Forma teste #2', 3, 'Quarto procedimento');
+INSERT INTO "checklist" VALUES(1,'Primeiro item da Checklist',1,1);
+INSERT INTO "checklist" VALUES(2,'Segundo passo 5s',5,1);
+INSERT INTO "checklist" VALUES(3,'Terceiro passo 9s',9,1);
+INSERT INTO "checklist" VALUES(4,'Quarto passo 13s e...',13,1);
+INSERT INTO "checklist" VALUES(5,'Ultimo passo 17s',17,1);
+INSERT INTO "checklist" VALUES(6,'Teste de passo aos 5s',5,2);
+INSERT INTO "checklist" VALUES(7,'Teste de passo aos 7s',7,2);
+DELETE FROM sqlite_sequence;
+INSERT INTO "sqlite_sequence" VALUES('procedure',2);
+INSERT INTO "sqlite_sequence" VALUES('video',4);
+COMMIT;
